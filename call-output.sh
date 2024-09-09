@@ -19,6 +19,7 @@
 # -----SET PARAMS BELOW--------
 runner="androidx.test.runner.AndroidJUnitRunner"                                    # Default runner; if you use custom - you can change it here
 test_package="io.readlui.testapp.test"                                              # Default test package; Change to your 
+# Recommended to keep all secrets in github secrets and put here with call arguments
 telegram_bot_token="7152891017:AAGbr4osyX2Cs560sMBDsboz5iXUGHXo6cM"                 # Change to your telegram bot token
 telegram_chat_id="-1002391815391"                                                   # Change to your telegram chat id
 telegram_status_chat_id="-4581150894"                                               # Change to your telegram statuses chat id; can be same as telegram_chat_id

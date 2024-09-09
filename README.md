@@ -11,7 +11,7 @@ send_slack.sh - example of implementation send message to slack
 modify_slack.sh - example of implementation modify message on slack
 
 send_telegram.sh - example of implementation send message to telegram
-modify_telegra.sh - example of implementation edit message in telegram
+modify_telegram.sh - example of implementation edit message in telegram
 
 orchestrator-1.5.0-alpha01.apk - android orchestrator apk
 test-services-1.5.0-alpha01.apk - android test-services apk

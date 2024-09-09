@@ -20,6 +20,7 @@
 # set -x # Enable for debug mode
 
 # Set params below if you use default_send_message or default_modify_message from this file
+# Recommended to keep all secrets in github secrets and put here with call arguments
 default_slack_api_key="xoxb-3059311361079-7657686256662-r2cAQpY1ydEhgNtyzOQDrqAt"   # Change to your slack token 
 default_slack_channel_id="C07KX3P797T"                                              # Change to your slack channel id
 
@@ -333,7 +334,7 @@ process_line() {
             test_status=""
 
             # Optional sleep for debug, uncomment if needed
-            # sleep 1
+            sleep 1
         fi
 }
 

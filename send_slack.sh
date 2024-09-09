@@ -1,8 +1,8 @@
 # Simple implementation of slack chat.postMessage method
 #
 # $1 - REQUIRED message new text
-# $2 - REQUIRED telegram bot token
-# $3 - REQUIRED telegram channel id with message
+# $2 - REQUIRED slack api token
+# $3 - REQUIRED slack channel id with message
 # $4 - OPTIONAL thread_ts; if set, the message will be sent in the thread
 #
 # Returns sent message timestamp
