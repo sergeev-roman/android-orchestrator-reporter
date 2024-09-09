@@ -2,9 +2,21 @@
 #
 # 
 # Sample of implementation to call orchestrator android autotests using monitor-output.sh
+# $1 - OPTIONAL header message
 # Does not require any additional arguments
+# 
+# 1. Sets header message
+# 2. Keeps example of implementation send and modify/edit message funs 
+# 3. Sends header message
+# 4. For each selected device:
+#   4.1 Uninstalls temp files
+#   4.2 Pushes required files
+#   4.3 Installs orchestrator, test-services, main and test apks
+#   4.4 Builds command to run tests
+#   4.5 Keeps updated header message
+#   4.6 Calls ./monitor-output.sh with params
 #
-# Set params below is required
+# -----SET PARAMS BELOW--------
 runner="androidx.test.runner.AndroidJUnitRunner"                                    # Default runner; if you use custom - you can change it here
 test_package="io.readlui.testapp.test"                                              # Default test package; Change to your 
 telegram_bot_token="7152891017:AAGbr4osyX2Cs560sMBDsboz5iXUGHXo6cM"                 # Change to your telegram bot token
@@ -12,6 +24,7 @@ telegram_chat_id="-1002391815391"                                               
 telegram_status_chat_id="-4581150894"                                               # Change to your telegram statuses chat id; can be same as telegram_chat_id
 default_slack_api_key="xoxb-3059311361079-7657686256662-r2cAQpY1ydEhgNtyzOQDrqAt"   # Change to your slack token 
 default_slack_channel_id="C07KX3P797T"                                              # Change to your slack channel id
+# -----------------------------
 
 storage="/data/local/tmp"                                                           # Base files push storage in android device; you can keep it default
 
@@ -62,7 +75,7 @@ modify_slack() {
 }
 
 
-# Get your header message id
+# Get your header message id from send message
 header_message_id=$(send_telegram "$header_message")
 wait
 
@@ -91,14 +104,15 @@ for device in emulator-5554 emulator-5556; do
     adb -s $device shell pm install -t -r "$storage/main.apk"
     adb -s $device shell pm install -t -r "$storage/test.apk"
 
-    # Mock shards, you can use your own logic here
+    # Mock shards, you can place your own logic here
+    # This mock works only with 2 connected devices one of them must be emulator-5554
     if [[ "$device" -eq "emulator-5554" ]]; then
         shard=0
     else
         shard=1
     fi
 
-    # Build adb device for run tests on device
+    # Build adb command for run tests on device
     command="adb -s $device shell '${shell_base} \
             -e numShards \"2\" \
             -e shardIndex \"${shard}\" \
